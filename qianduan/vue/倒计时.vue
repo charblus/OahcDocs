@@ -1,7 +1,7 @@
 ```js
   countDown () {
       // 目标日期时间戳
-       const end = Date.parse(new Date('2019-8-7 12:10:00'))
+       const end = Date.parse(new Date('2019-8-7 12:10:00').replace(/-/g, '/'))
       // 当前时间戳
        const now = Date.parse(new Date())
       // 相差的毫秒数
@@ -19,3 +19,5 @@
       }, 1000)
     },
 ```
+
+> ` replace(/-/g, '/') ` 解决ios 上new Date  不识别 ‘-’
