@@ -55,3 +55,31 @@ OpenJDK Runtime Environment (build 12.0.1+12)
 OpenJDK 64-Bit Server VM (build 12.0.1+12, mixed mode, sharing)
 
 ```
+
+
+### 安装包安装
+
+1. 下载  下载链接如下
+https://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+2. pkg 双击安装
+3. 配置
+```
+
+##env
+
+export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home
+export JAVA_12_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.2.jdk/Contents/Home
+
+# 默认为JDK8
+JAVA_HOME=$JAVA_8_HOME
+
+#alias命令动态切换JDK版本  
+alias jdk8="export JAVA_HOME=$JAVA_8_HOME"    
+alias jdk12="export JAVA_HOME=$JAVA_12_HOME" 
+
+PATH="$JAVA_HOME/bin:$PATH"
+CLASSPATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
+
+export JAVA_HOME PATH CLASSPATH
+```

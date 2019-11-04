@@ -1,4 +1,9 @@
 ##vuex
+#### 理论
+* 专门解决页面与页面之间需要共享变量的创建、维护、变更问题
+* 核心store(仓库)，基本上是一个容器，包含了大部分状态（state）
+* 状态存储是响应式   
+* 不能直接改变store中状态 唯一改变途径是显式的提交mutation
 
 1. 基本用法
 + `store.js`
@@ -92,9 +97,9 @@ export default new Vuex.Store({
 export default {
   state: {
     metaInfo: {
-      title: '嘉宾大学',
-      keywords: '嘉宾大学',
-      description: '嘉宾大学'
+      title: '山西大学',
+      keywords: '山西大学',
+      description: '山西大学'
     }
   },
   // 定义 getters  
@@ -125,14 +130,14 @@ import store from './store/index'
 
 // store
 // store.commit('CHANGE_META_INFO', {
-        //   title: '超级大学',
+        //   title: '山西大学',
       //   keywords: '这不是一般的大学',
-      //   description: '你知道吗'
+      //   description: '你知道的'
 // });
 // store.dispatch('changeMetaInfo', {
-      //   title: '超级大学',
+      //   title: '山西大学',
       //   keywords: '这不是一般的大学',
-      //   description: '你知道吗'
+      //   description: '你知道的'
       // })
 // console.log('获取', store.getters.metaInfo);
 
