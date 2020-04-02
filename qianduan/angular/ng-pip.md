@@ -6,6 +6,7 @@
 > 缺陷： 个人感觉命名有些糟糕 ， 第二次看居然愣神了 
 
 * html 布局页面使用
+
 ```html
     <div class="table-responsive">
       <!-- {{ studyProjectList | studyProjectType }} -->
@@ -30,6 +31,7 @@ export class StudyProjectTypePipe implements PipeTransform {
   }
 }
 ```
+
 > transform 方法是管道的基本要素。 PipeTransform接口中定义了它.
 当每个输入值被传给 transform 方法时，还会带上另一个参数
 

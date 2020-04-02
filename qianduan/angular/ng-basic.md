@@ -2,13 +2,14 @@
 
 * angular和vue 、react 比较，前者更像是一个框架 后两者较倾向视图view的轻量型 ，angular是一站式开发，从模块、服务、组件、路由、表单、响应式编程，是一个开箱即用，不需要太过依赖第三方类库；
 从集成上来看，对ts比其他更友好，虽然说其他已支持ts,但angular最早使用，也是用ts开发的，ts已成为现在前端框架的标配
-* 大型项目项目需要处理非常复杂的逻辑，而这些逻辑大部分都是异步操作的，angular 深度集成了rxjs ,用rxjs来支持对逻*辑和异步的响应式编程，这种响应式编程使得对逻辑和异步非常自然；
+* 大型项目项目需要处理非常复杂的逻辑，而这些逻辑大部分都是异步操作的，angular 深度集成了rxjs ,用rxjs来支持对复杂逻辑和异步的响应式编程，这种响应式编程使得对逻辑和异步非常自然；
 * 大型项目中表单处理，对字段的约束和验证是复杂的，ng 提供很好机制
 * 大型项目需要好的文件结构和编码规范，ng已从框架层做的很好了
 
 生态： 背后google和microsoft (ts和rxjs)，目前linKin 使用
 
 #### 架构
+
 模块的基本功能架构
 ||
 \/
@@ -36,7 +37,7 @@ export class BindComponent implements OnInit {
 ```
 
 * HTML绑定
-> 初始值[attr.Attribute]="value"，不可变，有的HTML属性没有对应的DOM属性，比如colspan，当没有DON属性的时候可使用；
+> 初始值[attr.Attribute]="value"，不可变，有的HTML属性没有对应的DOM属性，比如colspan，当没有DOM属性的时候可使用；
 
 * CSS类绑定
 > 全替换[class]="classValue"，部分替换[class.className]="classValue"
@@ -76,16 +77,19 @@ export class BindComponent implements OnInit {
 <p [class.bgc]="choose.show" (click)="shenfen(choose)">{{choose.duty}}</p>
 
 如上：你可以控制choose.show的true/false来实现bgc这个类的显示和消失。
+
 ```ts
   shenfen(choose) {
     choose.show = !choose.show;
   }
 ```
+
 这就ok了
 
 * [Angular 动态修改样式](https://blog.csdn.net/qq_36279445/article/details/78553802)
 
 * 指令绑定
+
 1. ngFor：循环指令
 
 ```html
@@ -143,15 +147,19 @@ export class BindComponent implements OnInit {
 ```
 
 * 双向绑定
+
 > [(ngModel)]：常用于表单组件
+
 ```html
 <h4>双向绑定</h4>
 <input type="text" [(ngModel)]="name">
 <span>{{name}}</span>
 ```
+
 > 这里注意，需要在`app.module.ts`引入表单模块FormsModule
 
-####管道
+#### 管道
+
 * 管道(过滤)：负责将原始值转成显示值
 
 名称	效果
@@ -169,8 +177,10 @@ async	异步流
  today: object = new Date()
 ```
 
-####投影
+#### 投影
+
 > 相当于vue的插槽slot，在ng中使用`ng-content`指令
+
 * 单个投影
 
 ```html
@@ -319,26 +329,28 @@ Observable.from([1,2,3,4]).map(item =>{
 2、子组件中类中先导入user对象，之后就可以在组件中直接使用该对象
 @Input () user;
 
-
 * 父组件访问子组件的方法和数据
 方法一：
 <button (click)="additem.add()" nz-button type="primary">添加</button>
 <app-addItem [user]=“user #additem></app-addItem>
-通过在子组件标签上加上属性#<name>，那么在组件模板中就可以直接通过该名称调用子组件里的方法和属性。但是这种写法有局限性，只能在html模板中使用，父组件本身的ts代码中并不能使用
+通过在子组件标签上加上属性 `#<name>`，那么在组件模板中就可以直接通过该名称调用子组件里的方法和属性。但是这种写法有局限性，只能在html模板中使用，父组件本身的ts代码中并不能使用
 
 方法二：
 父组件ts代码中调用子组件的方法和属性。
 首先导入模块ViewChild。
-import {ViewChild } from '@angular/core';
+`import {ViewChild } from '@angular/core';`
 在父组件的类中将子组件作为viewChild注入到父组件中
-@ViewChild(AdditemComponent) 
-private additem: AdditemComponent
-在父组件的方法中就可以通过this.additem[方法/属性名]来调用子组件的方法或属性数据
 
+```ts
+@ViewChild(AdditemComponent)
+private additem: AdditemComponent
+```
+
+在父组件的方法中就可以通过this.additem[方法/属性名]来调用子组件的方法或属性数据
 
 * 子组件调用父组件的方法
 
-子组件导出 EventEmitter 属性，通过emits方法，触发父组件中绑定的该属性的事件。
+子组件导出 EventEmitter 属性，通过emit方法，触发父组件中绑定的该属性的事件。
 具体用法：
 子组件中引入EventEmitter和Output 模块
 import { EventEmitter, Output } from '@angular/core';
@@ -350,5 +362,4 @@ this.addItem.emit(this.user);
 父组件定义addItem事件
 <app-addItem (addItem)="onAdditem($event)"></app-addItem>
 当子组件emit触发父组件的自定义事件addItem时，会触发父组件的onAdditem方法
-
 

@@ -1,3 +1,4 @@
 http proxy 
 
-勾选下方Automatic proxy configuration URL，填入国内的某个镜像站。这里，我选择的是mirrors.neusoft.edu.cn:80。
+勾选下方Automatic proxy configuration URL，填入国内的某个镜像站。
+这里，我选择的是mirrors.neusoft.edu.cn:80。
